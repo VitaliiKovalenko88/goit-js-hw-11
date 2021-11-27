@@ -12,15 +12,16 @@ export default class Gallery {
     this.orientation = 'horizontal';
     this.filter = true;
     this.page = '1';
-    this.quantity = '40';
+    this.quantity = 40;
   }
 
   async getGalerry() {
     const response = await axios.get(
       `/?key=${API_KEY}&image_type=${this.imageType}&page=${this.page}&per_page=${this.quantity}&orientation=${this.orientation}&q=${this.requestQuery}&safesearch=${this.filter}`,
     );
+
     const { hits, totalHits } = await response.data;
-    // console.log(imgData);
+    this.incrementPage();
     return { hits, totalHits };
   }
 
@@ -40,10 +41,3 @@ export default class Gallery {
     this.requestQuery = newQuery;
   }
 }
-
-// const gallery = new Gallery();
-
-// const gal = async () => {
-//   const { hits } = await gallery.getGalerry();
-//   createMarkupGallery(hits);
-// };

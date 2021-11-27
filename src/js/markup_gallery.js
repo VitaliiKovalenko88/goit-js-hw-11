@@ -32,10 +32,8 @@ export default img => {
   const galleryMarkup = img.map(markupPhoto).join();
 
   refs.galleryEl.insertAdjacentHTML('afterbegin', galleryMarkup);
-  let gallery = new SimpleLightbox('.gallery a', {
+  const lightBox = new SimpleLightbox('.photo-card', {
     captionsData: 'alt',
-    captionDelay: 250,
   });
-
-  gallery.refresh();
+  lightBox.refresh();
 };
