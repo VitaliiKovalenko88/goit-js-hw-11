@@ -4,7 +4,7 @@ const API_KEY = '22469389-b601f8ee0455705c879309776';
 const BASE_URL = 'https://pixabay.com/api';
 axios.defaults.baseURL = BASE_URL;
 
-class Gallery {
+export default class Gallery {
   constructor() {
     this.key = API_KEY;
     this.requestQuery = '';
@@ -43,4 +43,7 @@ class Gallery {
 
 // const gallery = new Gallery();
 
-// gallery.getGalerry();
+// const gal = async () => {
+//   const { hits } = await gallery.getGalerry();
+//   createMarkupGallery(hits);
+// };
