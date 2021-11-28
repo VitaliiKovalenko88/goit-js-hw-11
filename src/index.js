@@ -40,12 +40,10 @@ async function onFetchSeachPhoto() {
     }
 
     createMarkupGallery(hits);
-    const { height: cardHeight } = document
-      .querySelector('.gallery')
-      .firstElementChild.getBoundingClientRect();
+    const { height: cardHeight } = refs.galleryEl.firstElementChild.getBoundingClientRect();
 
     window.scrollBy({
-      top: cardHeight * 10,
+      top: cardHeight * 2,
       behavior: 'smooth',
     });
     showLoadMoreBtn();

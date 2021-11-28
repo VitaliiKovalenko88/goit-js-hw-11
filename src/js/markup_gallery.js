@@ -31,9 +31,10 @@ const markupPhoto = ({ webformatURL, likes, views, comments, downloads, largeIma
 export default img => {
   const galleryMarkup = img.map(markupPhoto).join();
 
-  refs.galleryEl.insertAdjacentHTML('afterbegin', galleryMarkup);
+  refs.galleryEl.insertAdjacentHTML('beforeend', galleryMarkup);
   const lightBox = new SimpleLightbox('.photo-card', {
     captionsData: 'alt',
+    captionsDaley: 250,
   });
   lightBox.refresh();
 };
