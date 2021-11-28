@@ -27,6 +27,7 @@ function onClickSearchBtn(e) {
 
 async function onFetchSeachPhoto() {
   try {
+    const isHidden = refs.loadMoreBtn.classList.contains('is-hidden');
     const { hits, totalHits } = await gallery.getGalerry();
 
     if (totalHits === 0) {
@@ -40,15 +41,18 @@ async function onFetchSeachPhoto() {
     }
 
     createMarkupGallery(hits);
-    const { height: cardHeight } = refs.galleryEl.firstElementChild.getBoundingClientRect();
 
-    window.scrollBy({
-      top: cardHeight * 2,
-      behavior: 'smooth',
-    });
+    if (isHidden) {
+      const { height: cardHeight } = refs.galleryEl.firstElementChild.getBoundingClientRect();
+
+      window.scrollBy({
+        top: cardHeight * 0.4,
+        behavior: 'smooth',
+      });
+    }
+
     showLoadMoreBtn();
-  } catch (error) {
-    console.log(error);
+  } catch {
     hideLoadMoreBtn();
     Notify.failure("We're sorry, but you've reached the end of search results.");
   }
@@ -56,12 +60,10 @@ async function onFetchSeachPhoto() {
 
 async function onClickLoadMoreBtn() {
   await onFetchSeachPhoto();
-  const { height: cardHeight } = document
-    .querySelector('.gallery')
-    .firstElementChild.getBoundingClientRect();
+  const { height: cardHeight } = refs.galleryEl.firstElementChild.getBoundingClientRect();
 
   window.scrollBy({
-    top: cardHeight * 10,
+    top: cardHeight * 3.2,
     behavior: 'smooth',
   });
 }
